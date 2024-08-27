@@ -1,0 +1,50 @@
+
+
+<ion-content class="ion-padding">
+
+
+  <ion-img src="assets/img/vacation.jpg"></ion-img>
+
+
+  <ion-item>
+    <ion-label>Elige Fecha de Check In</ion-label>
+    <ion-datetime-button datetime="datetime"></ion-datetime-button>
+    <ion-modal keepContentsMounted="true">
+      <ng-template>
+        <ion-datetime id="datetime" presentation="date" placeholder="Selecciona Fecha"></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </ion-item>
+  <ion-item>
+    <ion-label>Elige Fecha de Check Out</ion-label>
+    <ion-datetime-button datetime="datetime"></ion-datetime-button>
+    <ion-modal keepContentsMounted="true">
+      <ng-template>
+        <ion-datetime id="datetime" presentation="date" placeholder="Selecciona Fecha"></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-label>Huespedes</ion-label>
+    <ion-select placeholder="Selecciona">
+      <ion-select-option value="1">1 Huesped</ion-select-option>
+      <ion-select-option value="2">2 Huespedes</ion-select-option>
+      <ion-select-option value="3">3 Huespedes</ion-select-option>
+      <ion-select-option value="4">4 Huespedes</ion-select-option>
+      <ion-select-option value="5">5 Huespedes</ion-select-option>
+      <ion-select-option value="6">6 Huespedes</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Codigo Promocional</ion-label>
+    <ion-input placeholder="Ingresa tu código"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" color="primary" class="reservar-button">
+    Reservar
+  </ion-button>
+
+</ion-content>
