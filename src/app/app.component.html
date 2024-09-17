@@ -4,15 +4,14 @@
   <ion-tabs>
     <ion-tab-bar slot="bottom">
 
-      <ion-tab-button tab="home" routerLink="/home">
-        <ion-icon name="home"></ion-icon>
-        <ion-label>Inicio</ion-label>
-      </ion-tab-button>
-
-
       <ion-tab-button tab="reservar" routerLink="/reservar">
         <ion-icon name="calendar"></ion-icon>
         <ion-label>Reservar</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="misReservas" routerLink="/misReservas">
+        <ion-icon name="list-circle-outline"></ion-icon>
+        <ion-label>Mis Reservas</ion-label>
       </ion-tab-button>
 
 
@@ -20,6 +19,12 @@
         <ion-icon name="person"></ion-icon>
         <ion-label>Perfil</ion-label>
       </ion-tab-button>
+
+      <ion-tab-button tab="logOut" routerLink="/login">
+        <ion-icon name="log-out-outline"></ion-icon>
+        <ion-label>Cerrar Sesión</ion-label>
+      </ion-tab-button>
+      
     </ion-tab-bar>
   </ion-tabs>
 </ion-app>
