@@ -1,0 +1,53 @@
+ion-content.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #3b5998, #8b9dc3);
+  }
+  
+  .content-box {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .logo-container {
+    margin-bottom: 20px;
+  }
+  
+  .hotel-logo {
+    width: 120px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .welcome-text h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  .button-container {
+    width: 100%;
+  }
+  
+  .login-button {
+    --background: #ff914d;
+    --background-hover: #ff7631;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .register-button {
+    --border-color: #ff914d;
+    --border-radius: 25px;
+    border-radius: 25px;
+    margin-top: 10px;
+  }
+  
