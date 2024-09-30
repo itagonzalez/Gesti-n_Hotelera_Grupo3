@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ReservarPageRoutingModule } from './reservar-routing.module';
+import { RegisterPageRoutingModule } from './register-routing.module';
 
-import { ReservarPage } from './reservar.page';
+import { RegisterPage } from './register.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ReservarPageRoutingModule
+    RegisterPageRoutingModule
   ],
-  declarations: [ReservarPage]
+  declarations: [RegisterPage]
 })
-export class ReservarPageModule {}
+export class RegisterPageModule {}
