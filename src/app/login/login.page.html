@@ -1,3 +1,10 @@
+<ion-header>
+  <ion-button class="back-button" fill="clear" (click)="goBack()">
+    <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+    Volver
+  </ion-button>
+</ion-header>
+
 <ion-content class="login-container" fullscreen>
   <div class="overlay"></div> <!-- Superposición para el fondo -->
 
@@ -24,7 +31,7 @@
         </ion-item>
 
         <div class="button-container">
-          <ion-button expand="block" class="login-button">
+          <ion-button expand="block" class="login-button" (click)="goToRegister()">
             Ingresar
           </ion-button>
         </div>

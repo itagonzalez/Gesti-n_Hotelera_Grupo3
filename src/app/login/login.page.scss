@@ -1,4 +1,9 @@
 /* Contenedor principal para la página de inicio de sesión */
+ion-header {
+  --background: transparent;
+  padding: 20px;
+}
+
 ion-content.login-container {
   position: relative;
   display: flex;
@@ -17,6 +22,15 @@ ion-content.login-container {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1;
+}
+
+/* Botón de volver */
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #ffffff; /* Blanco */
+  z-index: 2;
 }
 
 /* Contenedor del contenido principal */

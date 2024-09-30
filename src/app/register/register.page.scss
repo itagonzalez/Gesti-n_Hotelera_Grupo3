@@ -1,0 +1,68 @@
+ion-toolbar {
+  background-color: #273746;
+}
+
+ion-title {
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff;
+}
+
+.register-container {
+  position: relative;
+  height: 100%;  
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  border: #ffffff;
+}
+
+.register-title {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  align-items: center;
+}
+
+.content-wrapper {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  border-color: #ffffff;
+}
+
+.register-button {
+  --background: #ffd700; 
+  --background-hover: #ffc700;
+  color: #000;
+  font-weight: bold;
+  border-radius: 30px;
+  height: 50px;
+  font-size: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+}
+
+.back-button {
+  --border-color: #ffd700;
+  --border-radius: 30px;
+  --color: #ffd700;;
+  font-weight: bold;
+  height: 50px;
+  font-size: 18px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+}
+
