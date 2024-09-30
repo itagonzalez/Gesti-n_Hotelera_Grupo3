@@ -75,3 +75,10 @@ ion-item {
   --background: transparent; 
 }
 
+ion-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: transparent;
+  z-index: 3;
+}

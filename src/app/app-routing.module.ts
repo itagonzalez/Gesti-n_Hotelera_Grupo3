@@ -27,15 +27,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'book',
-    loadChildren: () => import('./book/book.module').then( m => m.BookPageModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'reservations',
     loadChildren: () => import('./reservations/reservations.module').then( m => m.ReservationsPageModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'book-room',
+    loadChildren: () => import('./book-room/book-room.module').then( m => m.BookRoomPageModule),
+    canActivate: [AuthGuard]
+  },
+
 
 
 ];

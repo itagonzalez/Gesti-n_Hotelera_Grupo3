@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 import { NavController } from '@ionic/angular';
-import { AuthService } from 'src/app/services/auth.service'; // Asegúrate de importar el servicio correctamente
 
 @Component({
   selector: 'app-login',
@@ -8,34 +10,58 @@ import { AuthService } from 'src/app/services/auth.service'; // Asegúrate de im
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
-  user: string = '';
-  password: string = '';
-  errorMessage: string = ''; // Mensaje de error en caso de login fallido
+  formLogin: FormGroup;
+  loginError: boolean = false;
+  loginSuccess: boolean = false; 
+  isLoading: boolean = false;
 
-  constructor(private navCtrl: NavController, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private navCtrl: NavController
+  ) {
+    // Inicializa el formulario en el constructor
+    this.formLogin = this.fb.group({
+      user: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
 
-  // Función de login
   async login() {
-    if (!this.user || !this.password) {
-      this.errorMessage = 'Por favor, ingresa todos los campos.';
-      return;
-    }
+    const user = this.formLogin.get('user')?.value;
+    const password = this.formLogin.get('password')?.value;
+
+    this.isLoading = true;
 
     try {
-      const success = await this.authService.login(this.user, this.password);
+      const loggedIn = await this.authService.login(user, password);
 
-      if (success) {
-        this.navCtrl.navigateForward('/book'); // Navegar si el login es exitoso
+      this.isLoading = false;
+
+      if (loggedIn) {
+        this.loginSuccess = true; // Se actualiza loginSuccess en caso de éxito
+        setTimeout(() => {
+          this.navCtrl.navigateForward('/book-room');
+        }, 1000);
       } else {
-        this.errorMessage = 'Credenciales incorrectas. Inténtalo de nuevo.';
+        this.loginError = true;
+        this.loginSuccess = false; // Asegúrate de manejar loginSuccess adecuadamente aquí también
+        console.log('Credenciales inválidas');
       }
     } catch (error) {
-      this.errorMessage = 'Ocurrió un error al intentar iniciar sesión. Por favor, inténtalo más tarde.';
-      console.error('Error en login:', error);
+      console.error('Error during login:', error);
+      this.isLoading = false;
+      this.loginError = true;
+      this.loginSuccess = false; // También asegúrate de manejar loginSuccess en caso de error
     }
   }
 
+  navigateToRegister() {
+    this.navCtrl.navigateForward('/register');
+  }
+
   goBack() {
-    this.navCtrl.back(); // Navega hacia atrás
+    this.navCtrl.back();
   }
 }

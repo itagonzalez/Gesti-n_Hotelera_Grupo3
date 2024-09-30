@@ -20,27 +20,28 @@
           <p>Ingrese sus datos para acceder</p>
         </ion-text>
 
-        <form (ngSubmit)="login()"> <!-- Captura de datos del formulario -->
+        <form [formGroup]="formLogin" (ngSubmit)="login()"> <!-- Usando el FormGroup -->
           <ion-item class="input-item">
             <ion-label position="stacked">Usuario</ion-label>
-            <ion-input type="text" [(ngModel)]="user" name="user" required></ion-input>
+            <ion-input type="text" formControlName="user" required></ion-input> <!-- Usando formControlName -->
           </ion-item>
 
           <ion-item class="input-item">
             <ion-label position="stacked">Contraseña</ion-label>
-            <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+            <ion-input type="password" formControlName="password" required></ion-input> <!-- Usando formControlName -->
           </ion-item>
 
           <!-- Mostrar mensaje de error si las credenciales son incorrectas -->
-          <ion-note color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-note>
-
+          <ion-note color="danger" *ngIf="loginError">Credenciales inválidas. Inténtalo de nuevo.</ion-note>
+          
           <div class="button-container">
-            <ion-button expand="block" class="login-button" type="submit">
+            <ion-button expand="block" class="login-button" type="submit" [disabled]="formLogin.invalid || isLoading">
               Ingresar
             </ion-button>
           </div>
         </form>
 
+        <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner> <!-- Spinner de carga -->
       </ion-card-content>
     </ion-card>
   </div>
