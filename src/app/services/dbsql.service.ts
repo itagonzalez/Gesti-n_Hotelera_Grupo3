@@ -24,12 +24,4 @@ export class DbsqlService {
   updateUser(userData: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/users/${userData.id}`, userData);
   }
-
-  addTimestamp(userId: number, timestampData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/timestamps/user/${userId}`, timestampData);
-  }
-
-  getTimestamps(userId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/timestamps/user/${userId}`);
-  }
 }

@@ -1,9 +1,8 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      PACIFIC REEF HOTEL
-    </ion-title>
-  </ion-toolbar>
+  <ion-button class="back-button" fill="clear" (click)="goBack()">
+    <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+    Volver
+  </ion-button>
 </ion-header>
 
 <ion-content class="register-container" fullscreen>
@@ -89,9 +88,7 @@
           <ion-button expand="block" class="register-button" type="submit" [disabled]="formRegister.invalid">
             Registrar
           </ion-button>
-          <ion-button expand="block" fill="outline" class="back-button" (click)="goBack()">
-            Volver
-          </ion-button>
+
         </form>
       </ion-card-content>
     </ion-card>

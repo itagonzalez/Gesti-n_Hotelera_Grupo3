@@ -20,21 +20,26 @@
           <p>Ingrese sus datos para acceder</p>
         </ion-text>
 
-        <ion-item class="input-item">
-          <ion-label position="floating">Usuario</ion-label>
-          <ion-input type="text" placeholder="Ingrese su usuario"></ion-input>
-        </ion-item>
+        <form (ngSubmit)="login()"> <!-- Captura de datos del formulario -->
+          <ion-item class="input-item">
+            <ion-label position="stacked">Usuario</ion-label>
+            <ion-input type="text" [(ngModel)]="user" name="user" required></ion-input>
+          </ion-item>
 
-        <ion-item class="input-item">
-          <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="password" placeholder="Ingrese su contraseña"></ion-input>
-        </ion-item>
+          <ion-item class="input-item">
+            <ion-label position="stacked">Contraseña</ion-label>
+            <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+          </ion-item>
 
-        <div class="button-container">
-          <ion-button expand="block" class="login-button" (click)="goToRegister()">
-            Ingresar
-          </ion-button>
-        </div>
+          <!-- Mostrar mensaje de error si las credenciales son incorrectas -->
+          <ion-note color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-note>
+
+          <div class="button-container">
+            <ion-button expand="block" class="login-button" type="submit">
+              Ingresar
+            </ion-button>
+          </div>
+        </form>
 
       </ion-card-content>
     </ion-card>

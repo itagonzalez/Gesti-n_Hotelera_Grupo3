@@ -4,6 +4,7 @@ ion-header {
   padding: 20px;
 }
 
+/* Estilo del título de la página de inicio de sesión */
 ion-content.login-container {
   position: relative;
   display: flex;
@@ -11,6 +12,7 @@ ion-content.login-container {
   align-items: center;
   height: 100vh;
   padding: 20px;
+  background: transparent;
 }
 
 /* Capa de superposición oscura */
@@ -29,7 +31,7 @@ ion-content.login-container {
   position: absolute;
   top: 20px;
   left: 20px;
-  color: #ffffff; /* Blanco */
+  color: #ffffff; 
   z-index: 2;
 }
 
@@ -42,13 +44,14 @@ ion-content.login-container {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 10px;
+  padding: 20px; 
   border-radius: 10px;
+  background: transparent;
 }
 
 /* Contenedor del logo */
 .logo-container {
-  margin-bottom: 10px;
+  margin-bottom: 20px; 
 }
 
 /* Estilo del logo */
@@ -56,11 +59,12 @@ ion-content.login-container {
   width: 400px;
   height: auto;
   margin-top: 50px;
+  background: #000; 
 }
 
 /* Estilo del título de bienvenida */
 .welcome-text h1 {
-  font-size: 20px;
+  font-size: 24px; 
   color: #fff;
   font-family: 'Montserrat', sans-serif;
   margin-bottom: 10px;
@@ -71,6 +75,8 @@ ion-content.login-container {
   width: 100%;
   max-width: 400px;
   border-radius: 20px;
+  background: transparent;
+  padding: 20px; 
 }
 
 /* Espaciado antes del botón */
@@ -84,8 +90,11 @@ ion-content.login-container {
   --background-hover: #ffc700;
   color: #000;
   font-weight: bold;
-  border-radius: 30px;
-  height: 55px;
+  border-radius: 20px;
+  height: auto;
+  width: 150px; 
+  margin: auto; 
+  text-align: center;
   font-size: 20px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
@@ -95,7 +104,7 @@ ion-label {
   color: #ffffff;
   font-size: 16px;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   text-align: left;
   display: block;
 }
@@ -107,7 +116,7 @@ ion-input {
   font-size: 16px;
   background: #ffffff;
   border-radius: 12px;
-  height: 100%; /* El input ocupa toda la altura del ion-item */
+  height: 100%; 
 }
 
 /* Eliminar el borde de ion-item */
