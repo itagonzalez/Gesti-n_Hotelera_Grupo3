@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
+
 
 const routes: Routes = [
   {
@@ -12,13 +14,31 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'reservar',
-    loadChildren: () => import('./reservar/reservar.module').then( m => m.ReservarPageModule)
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'perfil',
-    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'reservations',
+    loadChildren: () => import('./reservations/reservations.module').then( m => m.ReservationsPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'book-room',
+    loadChildren: () => import('./book-room/book-room.module').then( m => m.BookRoomPageModule),
+    canActivate: [AuthGuard]
+  },
+
+
+
 ];
 
 @NgModule({

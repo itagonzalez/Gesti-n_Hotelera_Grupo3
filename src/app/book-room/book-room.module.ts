@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ReservarPageRoutingModule } from './reservar-routing.module';
+import { BookRoomPageRoutingModule } from './book-room-routing.module';
 
-import { ReservarPage } from './reservar.page';
+import { BookRoomPage } from './book-room.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ReservarPageRoutingModule
+    BookRoomPageRoutingModule
   ],
-  declarations: [ReservarPage]
+  declarations: [BookRoomPage]
 })
-export class ReservarPageModule {}
+export class BookRoomPageModule {}
