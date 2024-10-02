@@ -24,7 +24,7 @@ export class RegisterPage {
       address: ['', Validators.required],
       name: ['', Validators.required],
       lastName: ['', Validators.required],
-      companyName: ['', Validators.required],
+      phone: ['', Validators.required],
       dateBirth: ['', Validators.required]
     });
   }
@@ -37,11 +37,11 @@ export class RegisterPage {
       const address = this.formRegister.get('address')?.value;
       const name = this.formRegister.get('name')?.value;
       const lastName = this.formRegister.get('lastName')?.value;
-      const companyName = this.formRegister.get('companyName')?.value;
+      const phone = this.formRegister.get('phone')?.value;
       const dateBirth = this.formRegister.get('dateBirth')?.value;
 
       // Crear un objeto usuario con los datos del formulario
-      const userData = { user, password, email, address, name, lastName, companyName, dateBirth };
+      const userData = { user, password, email, address, name, lastName, phone, dateBirth };
 
       this.dbService.addUser(userData).subscribe(
         (response) => {

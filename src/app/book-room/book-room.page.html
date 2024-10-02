@@ -1,13 +1,57 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>bookRoom</ion-title>
+    <ion-title>Reservar Habitación</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">bookRoom</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="formBooking" (ngSubmit)="confirmBooking()">
+    <ion-item class="input-item">
+      <ion-label position="stacked">Fecha de Entrada</ion-label>
+      <ion-input
+        type="date"
+        [min]="minDateCheckIn"
+        formControlName="checkInDate"
+        (ionChange)="updateCheckInDate($event.target.value ? $event.target.value : null)"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item class="input-item">
+      <ion-label position="stacked">Fecha de Salida</ion-label>
+      <ion-input
+        type="date"
+        [min]="minDateCheckOut"
+        formControlName="checkOutDate"
+        (ionChange)="updateCheckOutDate($event.target.value ? $event.target.value : null)"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item class="input-item">
+      <ion-label position="stacked">Número de Huéspedes</ion-label>
+      <ion-input type="number" formControlName="guests" min="1" value="1"></ion-input>
+    </ion-item>
+
+    <ion-item class="input-item">
+      <ion-label position="stacked">Tipo de Habitación</ion-label>
+      <ion-select formControlName="roomType">
+        <ion-select-option value="single">Individual</ion-select-option>
+        <ion-select-option value="double">Doble</ion-select-option>
+        <ion-select-option value="suite">Suite</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item class="input-item">
+      <ion-label>Desayuno</ion-label>
+      <ion-checkbox formControlName="breakfast"></ion-checkbox>
+    </ion-item>
+
+    <ion-item class="input-item">
+      <ion-label>Transporte</ion-label>
+      <ion-checkbox formControlName="transport"></ion-checkbox>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" [disabled]="formBooking.invalid">Confirmar Reserva</ion-button>
+    
+    <ion-loading [isOpen]="isLoading" message="Reservando..."></ion-loading>
+  </form>
 </ion-content>

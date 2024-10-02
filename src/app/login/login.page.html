@@ -25,15 +25,23 @@
             <ion-label position="stacked">Usuario</ion-label>
             <ion-input type="text" formControlName="user" required></ion-input> <!-- Usando formControlName -->
           </ion-item>
+          <!-- Mensaje de error para el campo de usuario -->
+          <ion-note color="danger" *ngIf="formLogin.get('user')?.invalid && formLogin.get('user')?.touched">
+            El usuario es obligatorio.
+          </ion-note>
 
           <ion-item class="input-item">
             <ion-label position="stacked">Contraseña</ion-label>
             <ion-input type="password" formControlName="password" required></ion-input> <!-- Usando formControlName -->
           </ion-item>
+          <!-- Mensaje de error para el campo de contraseña -->
+          <ion-note color="danger" *ngIf="formLogin.get('password')?.invalid && formLogin.get('password')?.touched">
+            La contraseña es obligatoria.
+          </ion-note>
 
           <!-- Mostrar mensaje de error si las credenciales son incorrectas -->
           <ion-note color="danger" *ngIf="loginError">Credenciales inválidas. Inténtalo de nuevo.</ion-note>
-          
+
           <div class="button-container">
             <ion-button expand="block" class="login-button" type="submit" [disabled]="formLogin.invalid || isLoading">
               Ingresar
@@ -47,8 +55,8 @@
   </div>
 </ion-content>
 
-<ion-footer style="background-color: #273746">
+<ion-footer>
   <ion-toolbar>
-    <ion-title style="background-color: #273746">© 2024 Grupo3 DUOC-UC</ion-title>
+    <ion-title>© 2024 Grupo3 DUOC-UC</ion-title>
   </ion-toolbar>
 </ion-footer>
