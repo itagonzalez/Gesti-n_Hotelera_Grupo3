@@ -1,0 +1,63 @@
+/* Estilo para el footer */
+ion-footer {
+    background-color: #ffd700; /* Color de fondo dorado para el footer */
+}
+
+/* Estilo para el toolbar del footer */
+ion-toolbar {
+    --background: #ffd700; /* Color de fondo dorado */
+    color: #273746; /* Color del texto en oscuro */
+    text-align: center; /* Centramos el texto */
+}
+
+/* Estilo para los títulos en el footer */
+ion-title {
+    color: #273746; /* Color del texto del título en oscuro */
+    font-weight: bold; /* Negrita para el texto */
+}
+
+/* Estilo para el tab bar dentro del footer */
+ion-tab-bar {
+    --background: #ffd700; /* Fondo dorado para el tab bar */
+    --color-selected: #273746; /* Color del texto seleccionado en oscuro */
+    --color: #000; /* Color del texto no seleccionado */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+}
+
+/* Estilo para los botones en el tab bar */
+ion-tab-button {
+    --color-selected: #273746; /* Color oscuro cuando está seleccionado */
+    --color: #000; /* Color negro para el texto no seleccionado */
+}
+
+/* Estilo para los íconos en el tab bar */
+ion-icon {
+    font-size: 24px; /* Tamaño de los íconos */
+}
+
+/* Estilo para los textos en los íconos de tab bar */
+ion-label {
+    font-weight: bold; /* Negrita para el texto de las etiquetas */
+}
+
+.cancel-button {
+    --background: #ff3b30; /* Color rojo para el botón de cancelar */
+    --color: white; /* Color del texto en blanco */
+    border-radius: 20px; /* Bordes redondeados más prominentes */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra más suave */
+    font-weight: bold; /* Negrita para el texto */
+    padding: 8px 16px; /* Espaciado interno ajustado */
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+    transition: background 0.3s, transform 0.2s; /* Transiciones suaves */
+}
+
+.cancel-button:hover {
+    --background: #ff2b20; /* Color más oscuro al pasar el mouse */
+    transform: scale(1.02); /* Aumentar el tamaño ligeramente al pasar el mouse */
+}
+
+.button-container {
+    margin-top: 20px; /* Espaciado superior para el botón */
+    display: flex; /* Flexbox para centrar el botón */
+    justify-content: center; /* Centra el botón horizontalmente */
+}

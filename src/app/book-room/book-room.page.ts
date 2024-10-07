@@ -10,21 +10,28 @@ import { NavController } from '@ionic/angular';
 export class BookRoomPage {
   formBooking: FormGroup;
   isLoading: boolean = false;
-  totalPrice: number = 0;
+  totalPrice: number = 0; // Costo total
   minDateCheckIn: string;
   minDateCheckOut: string;
   selectedCheckIn: Date;
   selectedCheckOut: Date;
 
+  // Precios para cada tipo de habitación y servicio adicional
+  private readonly ROOM_PRICES: { [key: string]: number } = {
+    single: 35990, // Precio base por noche para habitación individual
+    double: 59990, // Precio base por noche para habitación doble
+    suite: 79990,  // Precio base por noche para suite
+  };
+  private readonly BREAKFAST_PRICE =5990; // Precio por desayuno
+  private readonly TRANSPORT_PRICE = 9990; // Precio por transporte
+
   constructor(private fb: FormBuilder, private navCtrl: NavController) {
-    // Inicializa las fechas actuales
     const currentDate = new Date();
     this.selectedCheckIn = currentDate;
     this.selectedCheckOut = currentDate;
 
-    // Formato de fecha para el input type="date"
-    this.minDateCheckIn = currentDate.toISOString().split('T')[0]; // Fecha mínima de entrada
-    this.minDateCheckOut = currentDate.toISOString().split('T')[0]; // Fecha mínima de salida
+    this.minDateCheckIn = currentDate.toISOString().split('T')[0];
+    this.minDateCheckOut = currentDate.toISOString().split('T')[0];
 
     this.formBooking = this.fb.group({
       checkInDate: [this.minDateCheckIn, Validators.required],
@@ -40,59 +47,82 @@ export class BookRoomPage {
   }
 
   calculateTotalPrice() {
-    let basePrice = 100; // Precio base de la habitación
+    let basePrice = this.ROOM_PRICES[this.formBooking.get('roomType')?.value as keyof typeof this.ROOM_PRICES] || 0; // Precio base por noche
+    let totalNights = 1; // Mínimo 1 noche
 
-    const roomType = this.formBooking.get('roomType')?.value;
     const guests = this.formBooking.get('guests')?.value;
     const breakfast = this.formBooking.get('breakfast')?.value;
     const transport = this.formBooking.get('transport')?.value;
 
-    switch (roomType) {
-      case 'double':
-        basePrice += 50;
-        break;
-      case 'suite':
-        basePrice += 100;
-        break;
+    if (this.selectedCheckIn && this.selectedCheckOut) {
+      const diffTime = Math.abs(this.selectedCheckOut.getTime() - this.selectedCheckIn.getTime());
+      totalNights = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     }
 
+    // Suma los precios de los servicios adicionales
+    let additionalCosts = 0;
     if (breakfast) {
-      basePrice += 20;
+      additionalCosts += this.BREAKFAST_PRICE;
     }
-
     if (transport) {
-      basePrice += 30;
+      additionalCosts += this.TRANSPORT_PRICE;
     }
 
-    // Multiplica el precio por el número de huéspedes
-    this.totalPrice = basePrice * guests;
+    // Calcula el precio total
+    this.totalPrice = (basePrice + additionalCosts) * guests * totalNights;
   }
 
   confirmBooking() {
     this.isLoading = true;
+
+    // Prepara los detalles de la reserva
+    const reservationDetails = {
+        checkInDate: this.formBooking.get('checkInDate')?.value,
+        checkOutDate: this.formBooking.get('checkOutDate')?.value,
+        guests: this.formBooking.get('guests')?.value,
+        roomType: this.formBooking.get('roomType')?.value,
+        breakfast: this.formBooking.get('breakfast')?.value,
+        transport: this.formBooking.get('transport')?.value,
+        totalPrice: this.totalPrice // Costo total
+    };
+
+    // Simulamos un retraso para la reserva
     setTimeout(() => {
-      this.isLoading = false;
-      this.navCtrl.navigateForward('/reservations');
-    }, 2000);
-  }
+        // Aquí se hace la lógica de reserva si es necesario
+
+        // Navega a la página de reservas
+        this.navCtrl.navigateForward('/reservations', {
+            queryParams: { reservationDetails: JSON.stringify(reservationDetails) } // Pasar detalles de la reserva
+        });
+
+        // Cambia el estado de isLoading después de navegar
+        this.isLoading = false;
+    }, 2000); // El tiempo puede ajustarse según lo que necesites
+}
+
+  
+  
 
   goBack() {
     this.navCtrl.back();
   }
 
-  // Método para actualizar la fecha de entrada
   updateCheckInDate(value: string | null) {
     if (value) {
-      this.selectedCheckIn = new Date(value); // Convertimos el string a Date
+      this.selectedCheckIn = new Date(value);
       this.formBooking.patchValue({ checkInDate: value });
     }
   }
 
-  // Método para actualizar la fecha de salida
   updateCheckOutDate(value: string | null) {
     if (value) {
-      this.selectedCheckOut = new Date(value); // Convertimos el string a Date
+      this.selectedCheckOut = new Date(value);
       this.formBooking.patchValue({ checkOutDate: value });
     }
+  }
+
+  logOut() {
+    localStorage.clear();
+    this.navCtrl.navigateRoot('/login');
   }
 }

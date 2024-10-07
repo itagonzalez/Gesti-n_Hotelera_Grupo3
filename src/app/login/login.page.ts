@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { NavController } from '@ionic/angular';
+import { HomePage } from '../home/home.page';
 
 @Component({
   selector: 'app-login',
@@ -69,6 +70,6 @@ export class LoginPage {
   }
 
   goBack() {
-    this.navCtrl.back();
+    this.navCtrl.navigateBack('/home');
   }
 }
