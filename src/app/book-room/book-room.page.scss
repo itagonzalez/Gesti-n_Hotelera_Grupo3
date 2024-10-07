@@ -1,0 +1,106 @@
+/* Estilo para el contenedor de la página de reserva */
+.book-room-container {
+    background-color: #273746; 
+    position: relative; 
+}
+
+/* Capa de superposición */
+.overlay {
+    position: absolute; 
+    background: rgba(0, 0, 0, 0.7); 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Contenedor del contenido */
+.content-wrapper {
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    padding: 20px; 
+}
+
+/* Estilo para el logo del hotel */
+.hotel-logo {
+    width: 200px; 
+    margin-bottom: 20px; 
+}
+
+/* Estilo para la tarjeta de reserva */
+.booking-card {
+    width: 100%; 
+    max-width: 400px; 
+    margin: auto; 
+    background-color: #fff; 
+    border-radius: 10px; 
+}
+
+/* Estilo para los ítems de entrada */
+.input-item {
+    margin-bottom: 15px; 
+}
+
+/* Estilo para los botones */
+.button-container {
+    margin-top: 20px; 
+}
+
+/* Estilo del botón de confirmación de reserva */
+ion-button {
+    --background: #ffd700; 
+    --background-hover: #ffc700; 
+    color: #000;
+    font-weight: bold; 
+    border-radius: 20px; 
+}
+
+/* Estilo para los textos de error */
+ion-note {
+    margin-top: 5px; 
+}
+
+/* Estilo para el footer */
+ion-footer {
+    background-color: #ffd700; 
+}
+
+/* Estilo para el toolbar del footer */
+ion-toolbar {
+    --background: #ffd700; 
+    color: #273746; 
+    text-align: center; 
+}
+
+/* Estilo para los títulos en el footer */
+ion-title {
+    color: #273746; 
+    font-weight: bold; 
+}
+
+/* Estilo para el tab bar dentro del footer */
+ion-tab-bar {
+    --background: #ffd700; 
+    --color-selected: #273746; 
+    --color: #000; 
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3); 
+}
+
+/* Estilo para los botones en el tab bar */
+ion-tab-button {
+    --color-selected: #273746; 
+    --color: #000;
+}
+
+/* Estilo para los íconos en el tab bar */
+ion-icon {
+    font-size: 24px; 
+}
+
+/* Estilo para los textos en los íconos de tab bar */
+ion-label {
+    font-weight: bold; 
+}

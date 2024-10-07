@@ -33,9 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'book-room',
-    loadChildren: () => import('./book-room/book-room.module').then( m => m.BookRoomPageModule),
-    canActivate: [AuthGuard]
-  },
+    loadChildren: () => import('./book-room/book-room.module').then( m => m.BookRoomPageModule)  },
 
 
 

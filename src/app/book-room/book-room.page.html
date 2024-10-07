@@ -1,13 +1,101 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>bookRoom</ion-title>
+    <ion-title>Reservar Habitación</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">bookRoom</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding book-room-container">
+  <form [formGroup]="formBooking" (ngSubmit)="confirmBooking()">
+    <ion-item class="input-item">
+      <ion-label position="stacked">Fecha de Entrada</ion-label>
+      <ion-input
+        type="date"
+        [min]="minDateCheckIn"
+        formControlName="checkInDate"
+        (ionChange)="updateCheckInDate($event.detail.value || null)"
+      ></ion-input>
+      <ion-note color="danger" *ngIf="formBooking.get('checkInDate')?.invalid && formBooking.get('checkInDate')?.touched">
+        La fecha de entrada es obligatoria.
+      </ion-note>
+    </ion-item>
+
+    <ion-item class="input-item">
+      <ion-label position="stacked">Fecha de Salida</ion-label>
+      <ion-input
+        type="date"
+        [min]="minDateCheckOut"
+        formControlName="checkOutDate"
+        (ionChange)="updateCheckOutDate($event.detail.value || null)"
+      ></ion-input>
+      <ion-note color="danger" *ngIf="formBooking.get('checkOutDate')?.invalid && formBooking.get('checkOutDate')?.touched">
+        La fecha de salida es obligatoria.
+      </ion-note>
+    </ion-item>
+
+    <ion-item class="input-item">
+      <ion-label position="stacked">Número de Huéspedes</ion-label>
+      <ion-input type="number" formControlName="guests" min="1" value="1"></ion-input>
+      <ion-note color="danger" *ngIf="formBooking.get('guests')?.invalid && formBooking.get('guests')?.touched">
+        Debes ingresar al menos un huésped.
+      </ion-note>
+    </ion-item>
+
+    <ion-item class="input-item">
+      <ion-label position="stacked">Tipo de Habitación</ion-label>
+      <ion-select formControlName="roomType">
+        <ion-select-option value="single">Individual</ion-select-option>
+        <ion-select-option value="double">Doble</ion-select-option>
+        <ion-select-option value="suite">Suite</ion-select-option>
+      </ion-select>
+      <ion-note color="danger" *ngIf="formBooking.get('roomType')?.invalid && formBooking.get('roomType')?.touched">
+        Selecciona un tipo de habitación.
+      </ion-note>
+    </ion-item>
+
+    <ion-item class="input-item">
+      <ion-label>Desayuno</ion-label>
+      <ion-checkbox formControlName="breakfast"></ion-checkbox>
+    </ion-item>
+
+    <ion-item class="input-item">
+      <ion-label>Transporte</ion-label>
+      <ion-checkbox formControlName="transport"></ion-checkbox>
+    </ion-item>
+
+    <!-- Cuadro de total a pagar -->
+    <ion-item class="total-price">
+      <ion-label>Total a Pagar: {{ totalPrice | currency:'CLP':'symbol' }}</ion-label>
+    </ion-item>
+
+    <div class="button-container">
+      <ion-button expand="full" type="submit" [disabled]="formBooking.invalid">Confirmar Reserva</ion-button>
+    </div>
+    
+    <ion-loading [isOpen]="isLoading" message="Reservando..."></ion-loading>
+  </form>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="book-room" [routerLink]="['/book-room']">
+          <ion-icon name="alarm-outline"></ion-icon>
+          <ion-label>Reservar</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="reservations" [routerLink]="['/reservations']">
+          <ion-icon name="document-text-outline"></ion-icon>
+          <ion-label>Reservaciones</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="profile" [routerLink]="['/profile']">
+          <ion-icon name="person-outline"></ion-icon>
+          <ion-label>Perfil</ion-label>
+        </ion-tab-button>
+        <ion-tab-button (click)="logOut()">
+          <ion-icon name="log-out-outline"></ion-icon>
+          <ion-label>Cerrar sesión</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

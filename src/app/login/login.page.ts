@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { NavController } from '@ionic/angular';
+import { HomePage } from '../home/home.page';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { NavController } from '@ionic/angular';
 export class LoginPage {
   formLogin: FormGroup;
   loginError: boolean = false;
-  loginSuccess: boolean = false; 
+  loginSuccess: boolean = false;
   isLoading: boolean = false;
 
   constructor(
@@ -29,6 +30,13 @@ export class LoginPage {
   }
 
   async login() {
+    // Verificamos si el formulario es válido antes de proceder con el login
+    if (this.formLogin.invalid) {
+      // Marca todos los campos como "tocados" para activar las validaciones
+      this.formLogin.markAllAsTouched();
+      return;
+    }
+
     const user = this.formLogin.get('user')?.value;
     const password = this.formLogin.get('password')?.value;
 
@@ -42,18 +50,18 @@ export class LoginPage {
       if (loggedIn) {
         this.loginSuccess = true; // Se actualiza loginSuccess en caso de éxito
         setTimeout(() => {
-          this.navCtrl.navigateForward('/book-room');
+          this.navCtrl.navigateForward('/book-room'); // Navegamos a la siguiente página
         }, 1000);
       } else {
         this.loginError = true;
-        this.loginSuccess = false; // Asegúrate de manejar loginSuccess adecuadamente aquí también
+        this.loginSuccess = false; // Maneja loginSuccess adecuadamente aquí también
         console.log('Credenciales inválidas');
       }
     } catch (error) {
       console.error('Error during login:', error);
       this.isLoading = false;
       this.loginError = true;
-      this.loginSuccess = false; // También asegúrate de manejar loginSuccess en caso de error
+      this.loginSuccess = false; // Asegúrate de manejar loginSuccess en caso de error
     }
   }
 
@@ -62,6 +70,6 @@ export class LoginPage {
   }
 
   goBack() {
-    this.navCtrl.back();
+    this.navCtrl.navigateBack('/home');
   }
 }

@@ -65,11 +65,11 @@
           </ion-note>
 
           <ion-item class="input-item">
-            <ion-label position="stacked">Nombre Empresa</ion-label>
-            <ion-input formControlName="companyName"></ion-input>
+            <ion-label position="stacked">Teléfono</ion-label>
+            <ion-input formControlName="phone"></ion-input>
           </ion-item>
-          <ion-note color="danger" *ngIf="formRegister.get('companyName')?.invalid && formRegister.get('companyName')?.touched">
-            El nombre de la empresa es obligatorio.
+          <ion-note color="danger" *ngIf="formRegister.get('phone')?.invalid && formRegister.get('phone')?.touched">
+            El teléfono es obligatorio.
           </ion-note>
 
           <ion-item class="input-item">
